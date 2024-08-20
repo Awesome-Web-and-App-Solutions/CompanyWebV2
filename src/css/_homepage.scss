@@ -1,6 +1,26 @@
 /* landing */
+
+/* styles.scss */
+
 .landing {
     margin-top: 60px;
+    background: url('./backgroundHome.png') no-repeat center center;
+    background-size: cover; /* Ensures the image covers the entire section */
+    color: #fff; /* Ensures text is readable on the background */
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+        z-index: 1; /* Overlay above the background image */
+    }
+
+    position: relative; /* Ensure child elements are positioned relative to this */
+    
     @media (min-width: 768px) {
         height: calc(100vh - 60px);
         display: flex;
@@ -12,6 +32,7 @@
             }
         }
     }
+
     @media (max-width: 767px) {
         .info {
             order: 2;
@@ -25,11 +46,14 @@
             order: 1;
         }
     }
+
     .container {
         display: flex;
         align-items: center;
         gap: 40px;
         flex-wrap: wrap;
+        position: relative; /* Ensures content stays on top of the background and overlay */
+        z-index: 2; /* Keeps the content above the background, overlay, and wave animation */
         & > div {
             width: 100%;
         }
@@ -37,20 +61,39 @@
             span {
                 display: block;
                 font-size: 16px;
-                color: $blue;
+                color: #e0e0e0; /* Lighter color for better contrast */
                 text-transform: uppercase;
                 font-weight: 500;
                 margin-bottom: 20px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Adds a shadow for better readability */
             }
             h1 {
                 font-size: 40px;
                 text-transform: capitalize;
-                color: $title-c;
+                color: #f8f9fa; /* Off-white color for good contrast */
                 font-weight: 600;
                 margin-bottom: 20px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Adds a shadow for better readability */
             }
             p {
                 margin-bottom: 20px;
+                color: #f8f9fa; /* Off-white color for good contrast */
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Adds a shadow for better readability */
+            }
+            a.button {
+                display: inline-block;
+                padding: 10px 20px;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-align: center;
+                background-color: #007bff; /* Default button color */
+                text-decoration: none;
+                
+                &:hover {
+                    background-color: #0056b3;
+                }
             }
         }
         .image {
@@ -64,7 +107,33 @@
             }
         }
     }
+
+    /* Wave animation */
+    .wave {
+        animation: moveWaves 5s infinite linear;
+        background: url('./backgroundHome.png') no-repeat center center;
+        background-size: cover; /* Ensures the wave image covers the entire section */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0; /* Ensure wave is behind other content */
+        opacity: 0.7; /* Adjust opacity for the wave animation */
+    }
 }
+
+/* Keyframes for the wave animation */
+@keyframes moveWaves {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(-20px) translateY(-10px);
+    }
+}
+
+
 /* landing */
 
 /* services */

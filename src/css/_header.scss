@@ -1,5 +1,5 @@
 header {
-    background-color: $blue;
+    background-color: #303438;
     position: fixed;
     left: 0;
     top: 0;
@@ -54,6 +54,15 @@ header {
             display: flex;
             align-items: center;
             gap: 6px;
+
+            img {
+                max-width: 50px; /* Adjust this value as needed */
+                max-height: 50px; /* Adjust this value as needed */
+                width: auto; /* Maintain aspect ratio */
+                height: auto; /* Maintain aspect ratio */
+                display: block;
+            }
+
             span {
                 font-size: 30px;
                 font-weight: 600;
