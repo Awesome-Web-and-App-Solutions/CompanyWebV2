@@ -1,0 +1,102 @@
+footer {
+    padding: 60px 0 30px;
+    .container {
+        .footer-logo {
+            gap: 6px;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            span {
+                font-size: 30px;
+                font-weight: 600;
+                color: $title-c;
+                text-transform: capitalize;
+            }
+        }
+        p {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .social {
+            margin: 30px 0;
+            h3 {
+                font-size: 22px;
+                font-weight: 500;
+                text-transform: capitalize;
+                text-align: center;
+                color: $title-c;
+                margin-bottom: 20px;
+            }
+            .media-icons {
+                gap: 10px;
+                margin-bottom: 40px;
+                a {
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid $border-c;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    i {
+                        font-size: 16px;
+                        color: $grey-c;
+                        transition: .3s;
+                        transform-origin: center;
+                    }
+                    &:hover {
+                        background-color: $blue;
+                        i {
+                            color: $white;
+                            animation: rotate .3s ease-in-out;
+                        }
+                    }
+                }
+            }
+            .copy {
+                text-align: center;
+                padding-top: 30px;
+                border-top: 1px solid $border-c;
+                p {
+                    text-transform: capitalize;
+                    a {
+                        color: $grey-c;
+                        font-weight: 600;
+                        &:hover {
+                            color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .go-up {
+        width: 45px;
+        height: 45px;
+        border-radius: 3px;
+        background-color: $blue;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        i {
+            color: $white;
+        }
+        &:hover {
+            background-color: $hover-b;
+        }
+    }
+}
+
+@keyframes rotate {
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
