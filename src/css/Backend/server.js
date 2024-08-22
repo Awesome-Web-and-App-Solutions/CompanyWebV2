@@ -1,47 +1,45 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer"); // For sending emails
+const express = require('express');
+const nodemailer = require('nodemailer');
 
-const app = express();
-const port = 3000;
+// Create a router instance
+const router = express.Router();
 
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+router.post('/submit-contact-form', (req, res) => {
+    const { fullName, email, questionComment } = req.body;
 
-// Serve static files
-app.use(express.static("public"));
+    // Setup Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'linjordan467@gmail.com',
+            pass: 'xqfk xfzm khye wkji'
+        }
+    });
 
-// POST endpoint for form submissions
-app.post("/contact", async (req, res) => {
-  const { fullName, email, message } = req.body;
+    const mailOptions = {
+        to: email,
+        from: 'jlinwork0605@gmail.com',
+        subject: 'New Contact Us Form Submission',
+        text: `
+        Hello,
 
-  // Here you would normally send an email or save to a database
-  // Example using nodemailer to send an email:
-  let transporter = nodemailer.createTransport({
-    service: "Gmail", // You can use other services
-    auth: {
-      user: "artemios@bluedevdigital.com",
-      pass: "your-email-password",
-    },
-  });
+        You have received a new message from the Contact Us form:
 
-  let mailOptions = {
-    from: email,
-    to: "artemios@bluedevdigital.com",
-    subject: `Contact Form Submission from ${fullName}`,
-    text: `Message: ${message}\n\nFrom: ${fullName}\nEmail: ${email}`,
-  };
+        Name: ${fullName}
 
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).send("Message sent successfully!");
-  } catch (error) {
-    res.status(500).send("Error sending message. Please try again.");
-  }
+        Email: ${email}
+        
+        Message: ${questionComment}
+        `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).send('Error sending email');
+        }
+        res.status(200).send('Email sent successfully');
+    });
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+module.exports = router;
